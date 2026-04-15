@@ -23,21 +23,66 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  const renderBook = (bookData) => {
-    // Clear previous book if one was loaded
-    document.getElementById('viewer').innerHTML = '';
+  // We need to store the filename to use as our unique localStorage key
+  let currentBookKey = '';
+
+  uploadInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
     
-    // Initialize ePub.js
+    // Clean the filename to use as a safe storage key
+    currentBookKey = 'dn_epub_' + file.name.replace(/[^a-zA-Z0-9]/g, '_');
+
+    if (window.FileReader) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const bookData = event.target.result;
+        renderBook(bookData);
+      };
+      reader.readAsArrayBuffer(file);
+    }
+  });
+
+  const renderBook = (bookData) => {
+    document.getElementById('viewer').innerHTML = '';
     book = ePub(bookData);
     
     rendition = book.renderTo("viewer", {
       width: "100%",
       height: "100%",
-      spread: "none", // Forces single page mode for small screens
+      spread: "none",
       manager: "continuous",
       flow: "paginated"
     });
 
+    rendition.themes.default({
+      body: { 
+        "background": "#000000 !important",
+        "color": "#e0e0e0 !important",
+        "font-family": "system-ui, serif !important",
+        "padding": "0 10px !important"
+      },
+      p: {
+        "font-size": "24px !important", 
+        "line-height": "1.5 !important"
+      }
+    });
+
+    // --- NEW: Check localStorage for a saved position ---
+    const savedLocation = localStorage.getItem(currentBookKey);
+    
+    // Display the book, passing the saved location if it exists
+    rendition.display(savedLocation || undefined);
+
+    // --- NEW: Listen for page turns and save the new position ---
+    rendition.on("relocated", (location) => {
+      // location.start.cfi is the exact coordinate of the top of the current page
+      localStorage.setItem(currentBookKey, location.start.cfi);
+    });
+
+    document.querySelector('.upload-btn').style.display = 'none';
+    touchZones.classList.remove('hidden');
+  };
     // Force Dark Mode & Large Fonts via ePub.js Themes
     rendition.themes.default({
       body: { 

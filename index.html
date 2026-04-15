@@ -14,9 +14,30 @@
     
     <header class="app-header" id="top-header">
       <span class="brand-small" id="about-trigger">DN</span>
-      <label for="book-upload" class="upload-btn">Load Book</label>
+      <button id="settings-trigger" class="header-btn hidden" style="font-weight: bold; font-size: 1.2rem;">Aa</button>
+      <label for="book-upload" class="upload-btn" id="upload-label">Load Book</label>
       <input type="file" id="book-upload" accept=".epub" class="hidden-input">
     </header>
+
+    <div id="settings-modal" class="modal hidden">
+      <div class="modal-content">
+        <h2 style="margin-bottom: 5px;">Settings</h2>
+        
+        <div class="settings-group">
+          <p style="margin-bottom: 5px; color: var(--text-muted);">Theme</p>
+          <button id="theme-toggle" class="btn settings-btn">Switch to Light Mode</button>
+        </div>
+
+        <div class="settings-group">
+          <p style="margin-bottom: 5px; color: var(--text-muted);">Font</p>
+          <button class="btn settings-btn font-select" data-font="sans-serif">Sans-Serif</button>
+          <button class="btn settings-btn font-select" data-font="serif" style="font-family: serif;">Serif</button>
+          <button class="btn settings-btn font-select" data-font="OpenDyslexic">OpenDyslexic</button>
+        </div>
+
+        <button id="close-settings" class="btn btn-primary" style="margin-top: 10px;">Done</button>
+      </div>
+    </div>
 
     <div id="viewer" class="viewer-container"></div>
 

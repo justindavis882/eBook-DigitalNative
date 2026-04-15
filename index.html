@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>eBook | Digital Native</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/epubjs/dist/epub.min.js"></script>
+</head>
+<body>
+
+  <main class="app-container">
+    
+    <header class="app-header" id="top-header">
+      <span class="brand-small" id="about-trigger">DN</span>
+      <label for="book-upload" class="upload-btn">Load Book</label>
+      <input type="file" id="book-upload" accept=".epub" class="hidden-input">
+    </header>
+
+    <div id="viewer" class="viewer-container"></div>
+
+    <div id="touch-zones" class="touch-overlay hidden">
+      <div id="prev-zone" class="zone left-zone"></div>
+      <div id="next-zone" class="zone right-zone"></div>
+    </div>
+
+    <div id="about-modal" class="modal hidden">
+      <div class="modal-content">
+        <h2>eBook | Digital Native</h2>
+        <p>Distraction-free reading for minimalist displays.</p>
+        <a href="https://justindavis882.github.io/DigitalNative" target="_blank" class="modal-link">Visit Digital Native</a>
+        <button id="close-modal" class="btn">Close</button>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

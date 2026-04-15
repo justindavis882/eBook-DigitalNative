@@ -128,3 +128,61 @@ body {
 .modal-content h2 { margin: 0; }
 .modal-link { color: var(--btn-op); text-decoration: none; font-weight: bold; }
 .btn { background-color: #333; color: white; border: none; padding: 12px; border-radius: 8px; font-size: 1.1rem; cursor: pointer;}
+
+/* Update the top header button styles to match */
+.header-btn {
+  background: none;
+  border: none;
+  color: var(--text-main);
+  cursor: pointer;
+  padding: 5px 15px;
+}
+
+.header-btn.hidden {
+  display: none;
+}
+
+/* Light Theme Overrides */
+body.light-theme {
+  --bg-color: #f4f4f4;
+  --container-bg: #ffffff;
+  --text-main: #121212;
+  --text-muted: #555555;
+}
+
+body.light-theme .modal-content {
+  background-color: #e0e0e0;
+}
+
+body.light-theme .btn {
+  background-color: #cccccc;
+  color: #121212;
+}
+
+body.light-theme .btn-primary {
+  background-color: var(--btn-op);
+  color: white;
+}
+
+/* Settings Menu Layout */
+.settings-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.settings-btn {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid transparent;
+}
+
+.settings-btn.active {
+  border: 2px solid var(--btn-op);
+}
+
+.btn-primary {
+  background-color: var(--btn-op);
+  color: white;
+}

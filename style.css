@@ -28,6 +28,10 @@ body {
   flex-direction: column;
 }
 
+.intro {
+  text-align: center;
+}
+
 /* Header & Upload Button */
 .app-header {
   display: flex;
